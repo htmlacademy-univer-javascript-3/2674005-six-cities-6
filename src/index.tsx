@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import './index.css';
-
-const OFFERS_COUNT = 5;
+import { offers } from './mocks/offers';
 
 const rootElement = document.getElementById('root');
 
@@ -12,7 +11,7 @@ if (rootElement) {
 
   root.render(
     <React.StrictMode>
-      <App offersCount={OFFERS_COUNT} />
+      <App offers={offers} />
     </React.StrictMode>
   );
 }
