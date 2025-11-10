@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './components/app/app';
+import './index.css';
+import { offers } from './mocks/offers';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const rootElement = document.getElementById('root');
 
-root.render(
-  <React.StrictMode>
-    <h1>Hello, World!</h1>
-  </React.StrictMode>
-);
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
+
+  root.render(
+    <React.StrictMode>
+      <App offers={offers} />
+    </React.StrictMode>
+  );
+}
