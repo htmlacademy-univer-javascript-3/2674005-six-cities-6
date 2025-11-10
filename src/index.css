@@ -1,4 +1,365 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, -system-ui,
+    'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.page--gray {
+  background-color: #f5f5f5;
+}
+
+
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  display: block;
+}
+
+.header__nav-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+.header__nav-link {
+  text-decoration: none;
+  color: #000000;
+}
+
+.header__nav-link--profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header__avatar-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #dddddd;
+}
+
+
+.page__main--index {
+  padding: 30px 0 40px;
+}
+
+.tabs {
+  background-color: #ffffff;
+}
+
+.locations {
+  padding: 10px 0;
+}
+
+.locations__list {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.locations__item-link {
+  text-decoration: none;
+  color: #999999;
+  font-size: 16px;
+}
+
+.tabs__item--active span,
+.locations__item-link:hover span {
+  color: #4481c3;
+}
+
+.cities {
+  padding-top: 20px;
+}
+
+.cities__places-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.cities__places {
+  flex: 0 0 540px;
+}
+
+.cities__right-section {
+  flex: 1 1 auto;
+}
+
+
+.places__found {
+  display: block;
+  margin: 0 0 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.places__sorting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.places__sorting-caption {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #999999;
+}
+
+.places__sorting-type {
+  position: relative;
+  padding-right: 14px;
+  cursor: pointer;
+}
+
+.places__sorting-arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.places__list {
+  display: grid;
+  grid-template-columns: repeat(2, 260px);
+  gap: 30px;
+}
+
+.cities__places-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.place-card {
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.place-card__mark {
+  padding: 6px 8px;
+  background-color: #4481c3;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cities__image-wrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.place-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.place-card__info {
+  padding: 10px 12px 12px;
+}
+
+.place-card__price-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.place-card__price {
+  font-size: 16px;
+}
+
+.place-card__price-value {
+  font-weight: 700;
+}
+
+.place-card__price-text {
+  font-size: 12px;
+  color: #777777;
+}
+
+.place-card__bookmark-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.place-card__name {
+  margin: 4px 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.place-card__name a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.place-card__name a:hover {
+  color: #4481c3;
+}
+
+.place-card__type {
+  margin: 0;
+  font-size: 12px;
+  color: #777777;
+}
+
+
+.rating {
+  margin-bottom: 4px;
+}
+
+.rating__stars {
+  position: relative;
+  width: 80px;
+  height: 14px;
+  background: #eeeeee;
+  overflow: hidden;
+}
+
+.rating__stars span {
+  display: block;
+  height: 100%;
+  background-color: #ffb400;
+}
+
+
+.cities__map.map {
+  width: 100%;
+  height: 580px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, -segoe-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #000;
+  background-color: #f5f5f5;
+}
+
+.page__main--index {
+  padding: 40px 0 60px;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.cities__places-container {
+  display: grid;
+  grid-template-columns: 2fr 1.6fr;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.places__list {
+  display: grid;
+  grid-template-columns: repeat(2, 260px);
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.place-card {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.place-card__image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.place-card__info {
+  padding: 10px 12px 12px;
+}
+
+.cities__map.map {
+  width: 100%;
+  height: 580px;
+  border-radius: 4px;
+  overflow: hidden;
 }

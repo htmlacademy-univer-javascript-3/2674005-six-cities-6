@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
+import 'leaflet/dist/leaflet.css';
 import './index.css';
 import { offers } from './mocks/offers';
 
