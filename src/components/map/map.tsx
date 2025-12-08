@@ -23,15 +23,17 @@ function MapComponent({ offers, activeOfferId }: MapProps): JSX.Element {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<LeafletMap | null>(null);
   const markersRef = useRef<Record<string, Marker>>({});
+  const prevCityRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (!mapContainerRef.current || offers.length === 0) {
       return;
     }
 
-    if (!mapRef.current) {
-      const center = offers[0].location;
+    const currentCity = offers[0].city.name;
+    const center = offers[0].location;
 
+    if (!mapRef.current) {
       mapRef.current = L.map(mapContainerRef.current).setView(
         [center.latitude, center.longitude],
         center.zoom
@@ -40,8 +42,9 @@ function MapComponent({ offers, activeOfferId }: MapProps): JSX.Element {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(mapRef.current);
-    } else {
-      const center = offers[0].location;
+      
+      prevCityRef.current = currentCity;
+    } else if (prevCityRef.current !== currentCity) {
       mapRef.current.flyTo(
         [center.latitude, center.longitude],
         center.zoom,
@@ -50,6 +53,7 @@ function MapComponent({ offers, activeOfferId }: MapProps): JSX.Element {
           easeLinearity: 0.25
         }
       );
+      prevCityRef.current = currentCity;
     }
 
     // Удаляем маркеры, которых нет в новом списке офферов

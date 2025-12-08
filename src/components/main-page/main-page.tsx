@@ -7,7 +7,9 @@ import Sorting, { SortType } from '../sorting/sorting';
 import Spinner from '../spinner/spinner';
 import HeaderLogo from '../header-logo/header-logo';
 import HeaderNav from '../header-nav/header-nav';
+import MainEmpty from '../main-empty/main-empty';
 import { changeCity } from '../../store/action';
+import { logout } from '../../store/api-actions';
 import { selectCity, selectCityOffers, selectOffersLoading, selectFavoriteOffers } from '../../store/selectors/offers-selectors';
 import { selectAuthorizationStatus, selectUser } from '../../store/selectors/user-selectors';
 import type { AppDispatch } from '../../store';
@@ -50,6 +52,10 @@ function MainPage(): JSX.Element {
     setCurrentSort(sort);
   }, []);
 
+  const handleLogout = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -60,12 +66,13 @@ function MainPage(): JSX.Element {
               authorizationStatus={authorizationStatus}
               user={user}
               favoriteCount={favoriteOffers.length}
+              onLogout={handleLogout}
             />
           </div>
         </div>
       </header>
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${cityOffers.length === 0 && !isLoading ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <CitiesList currentCity={currentCity} onCityChange={handleCityChange} />
@@ -74,6 +81,11 @@ function MainPage(): JSX.Element {
         <div className="cities">
           {isLoading ? (
             <Spinner />
+          ) : cityOffers.length === 0 ? (
+            <div className="cities__places-container cities__places-container--empty container">
+              <MainEmpty city={currentCity} />
+              <div className="cities__right-section"></div>
+            </div>
           ) : (
             <div className="cities__places-container container">
               <section className="cities__places places">

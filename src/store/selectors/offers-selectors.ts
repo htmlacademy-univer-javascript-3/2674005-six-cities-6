@@ -6,6 +6,8 @@ export const selectCity = (state: RootState) => state.offers.city;
 export const selectAllOffers = (state: RootState) => state.offers.offers;
 export const selectOffersLoading = (state: RootState) => state.offers.isLoading;
 export const selectOffersError = (state: RootState) => state.offers.hasError;
+export const selectFavorites = (state: RootState) => state.offers.favorites;
+export const selectFavoritesLoading = (state: RootState) => state.offers.isFavoritesLoading;
 
 // Memoized selectors
 export const selectCityOffers = createSelector(
@@ -14,6 +16,6 @@ export const selectCityOffers = createSelector(
 );
 
 export const selectFavoriteOffers = createSelector(
-  [selectAllOffers],
-  (offers) => offers.filter((offer) => offer.isFavorite)
+  [selectFavorites],
+  (favorites) => favorites
 );
