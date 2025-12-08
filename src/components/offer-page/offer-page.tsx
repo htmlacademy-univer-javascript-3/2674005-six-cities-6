@@ -86,7 +86,7 @@ function OfferPage(): JSX.Element {
               <div className="offer__image-wrapper">
                 <img
                   className="offer__image"
-                  src={`/${offer.previewImage}`}
+                  src={offer.previewImage}
                   alt={offer.title}
                 />
               </div>

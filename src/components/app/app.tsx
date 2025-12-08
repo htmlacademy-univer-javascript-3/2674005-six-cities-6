@@ -10,7 +10,6 @@ import PrivateRoute from '../private-route/private-route';
 import type { RootState } from '../../store';
 
 function App(): JSX.Element {
-  const isAuthorized = false;
   const offers = useSelector((state: RootState) => state.offers);
   const favoriteOffers = offers.filter((offer) => offer.isFavorite);
 
@@ -22,7 +21,7 @@ function App(): JSX.Element {
         <Route
           path="/favorites"
           element={
-            <PrivateRoute isAuthorized={isAuthorized}>
+            <PrivateRoute>
               <FavoritesPage offers={favoriteOffers} />
             </PrivateRoute>
           }
