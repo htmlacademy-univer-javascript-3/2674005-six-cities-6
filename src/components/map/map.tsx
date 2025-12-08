@@ -8,13 +8,13 @@ type MapProps = {
 };
 
 const defaultIcon = L.icon({
-  iconUrl: 'img/pin.svg',
+  iconUrl: '/img/pin.svg',
   iconSize: [27, 39],
   iconAnchor: [13.5, 39]
 });
 
 const activeIcon = L.icon({
-  iconUrl: 'img/pin-active.svg',
+  iconUrl: '/img/pin-active.svg',
   iconSize: [27, 39],
   iconAnchor: [13.5, 39]
 });
@@ -71,7 +71,7 @@ function Map({ offers, activeOfferId }: MapProps): JSX.Element {
     <div
       className="cities__map map"
       ref={mapContainerRef}
-      style={{ height: '500px' }}
+      style={{ height: '100%', width: '100%' }}
     />
   );
 }

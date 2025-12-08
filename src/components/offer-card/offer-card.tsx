@@ -25,7 +25,7 @@ function OfferCard({ offer, onMouseEnter, onMouseLeave }: OfferCardProps): JSX.E
         <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"
-            src={offer.image}
+            src={`/${offer.image}`}
             width="260"
             height="200"
             alt={offer.title}
@@ -52,8 +52,8 @@ function OfferCard({ offer, onMouseEnter, onMouseLeave }: OfferCardProps): JSX.E
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
             <span style={{ width: `${offer.rating * 20}%` }}></span>
-            <span className="visually-hidden">Rating</span>
           </div>
+          <span className="visually-hidden">Rating</span>
         </div>
 
         <h2 className="place-card__name">
