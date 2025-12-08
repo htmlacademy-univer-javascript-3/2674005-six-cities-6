@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
-import { loadOffers } from './store/action';
+import { fetchOffers } from './store/api-actions';
 import 'leaflet/dist/leaflet.css';
 import './index.css';
-import { offers } from './mocks/offers';
 
-store.dispatch(loadOffers(offers));
+store.dispatch(fetchOffers());
 
 const rootElement = document.getElementById('root');
 
