@@ -1,6 +1,11 @@
 import React, { memo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavorite } from '../../store/api-actions';
+import { selectAuthorizationStatus } from '../../store/selectors/user-selectors';
+import { AuthorizationStatus } from '../../const';
 import type { Offer } from '../../types/offer';
+import type { AppDispatch } from '../../store';
 
 type OfferCardProps = {
   offer: Offer;
@@ -9,6 +14,21 @@ type OfferCardProps = {
 };
 
 function OfferCardComponent({ offer, onMouseEnter, onMouseLeave }: OfferCardProps): JSX.Element {
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const authorizationStatus = useSelector(selectAuthorizationStatus);
+
+  const handleFavoriteClick = () => {
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      navigate('/login');
+      return;
+    }
+
+    dispatch(toggleFavorite({
+      offerId: offer.id,
+      status: offer.isFavorite ? 0 : 1
+    }));
+  };
   return (
     <article
       className="cities__card place-card"
@@ -39,7 +59,11 @@ function OfferCardComponent({ offer, onMouseEnter, onMouseLeave }: OfferCardProp
             <b className="place-card__price-value">€{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button 
+            className={`place-card__bookmark-button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''} button`} 
+            type="button"
+            onClick={handleFavoriteClick}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>

@@ -126,3 +126,33 @@ export const postComment = createAsyncThunk<
     return data;
   }
 );
+
+export const toggleFavorite = createAsyncThunk<
+  Offer,
+  { offerId: string; status: number },
+  { extra: AxiosInstance }
+>(
+  'offers/toggleFavorite',
+  async ({ offerId, status }, { extra: api }) => {
+    const { data } = await api.post<Offer>(`${APIRoute.Favorite}/${offerId}/${status}`);
+    return {
+      ...data,
+      image: data.previewImage
+    };
+  }
+);
+
+export const fetchFavorites = createAsyncThunk<
+  Offer[],
+  undefined,
+  { extra: AxiosInstance }
+>(
+  'offers/fetchFavorites',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<Offer[]>(APIRoute.Favorite);
+    return data.map((offer) => ({
+      ...offer,
+      image: offer.previewImage
+    }));
+  }
+);
