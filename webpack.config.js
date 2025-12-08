@@ -30,7 +30,12 @@ module.exports = {
     })
   ],
   devServer: {
-    static: './dist',
+    static: [
+      {
+        directory: path.resolve(__dirname, 'public'),
+        publicPath: '/'
+      }
+    ],
     historyApiFallback: true,
     port: 3000
   },

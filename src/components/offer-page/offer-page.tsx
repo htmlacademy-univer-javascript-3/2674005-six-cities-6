@@ -18,7 +18,7 @@ function OfferPage(): JSX.Element {
                 <Link className="header__logo-link" to="/">
                   <img
                     className="header__logo"
-                    src="img/logo.svg"
+                    src="/img/logo.svg"
                     alt="6 cities logo"
                     width="81"
                     height="41"
@@ -48,7 +48,7 @@ function OfferPage(): JSX.Element {
               <Link className="header__logo-link" to="/">
                 <img
                   className="header__logo"
-                  src="img/logo.svg"
+                  src="/img/logo.svg"
                   alt="6 cities logo"
                   width="81"
                   height="41"
@@ -85,7 +85,7 @@ function OfferPage(): JSX.Element {
               <div className="offer__image-wrapper">
                 <img
                   className="offer__image"
-                  src={offer.previewImage}
+                  src={`/${offer.previewImage}`}
                   alt={offer.title}
                 />
               </div>
@@ -106,9 +106,9 @@ function OfferPage(): JSX.Element {
 
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: '80%' }} />
-                  <span className="visually-hidden">Rating</span>
+                  <span style={{ width: `${offer.rating * 20}%` }}></span>
                 </div>
+                <span className="visually-hidden">Rating</span>
                 <span className="offer__rating-value rating__value">
                   {offer.rating.toFixed(1)}
                 </span>
@@ -139,7 +139,7 @@ function OfferPage(): JSX.Element {
                   <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
                     <img
                       className="offer__avatar user__avatar"
-                      src="img/avatar-angelina.jpg"
+                      src="/img/avatar-angelina.jpg"
                       width="74"
                       height="74"
                       alt="Host avatar"
