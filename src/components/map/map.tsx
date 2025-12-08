@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import L, { Map as LeafletMap, LayerGroup } from 'leaflet';
+import L, { Map as LeafletMap, Marker } from 'leaflet';
 import type { Offer } from '../../types/offer';
 
 type MapProps = {
@@ -22,7 +22,7 @@ const activeIcon = L.icon({
 function Map({ offers, activeOfferId }: MapProps): JSX.Element {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<LeafletMap | null>(null);
-  const markersLayerRef = useRef<LayerGroup | null>(null);
+  const markersRef = useRef<Record<string, Marker>>({});
 
   useEffect(() => {
     if (!mapContainerRef.current || offers.length === 0) {
@@ -40,32 +40,40 @@ function Map({ offers, activeOfferId }: MapProps): JSX.Element {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(mapRef.current);
-
-      markersLayerRef.current = L.layerGroup().addTo(mapRef.current);
-    }
-  }, [offers]);
-
-  useEffect(() => {
-    if (!mapRef.current || !markersLayerRef.current) {
-      return;
     }
 
-    markersLayerRef.current.clearLayers();
+    // Удаляем маркеры, которых нет в новом списке офферов
+    const currentOfferIds = new Set(offers.map((offer) => offer.id));
+    Object.keys(markersRef.current).forEach((id) => {
+      if (!currentOfferIds.has(id)) {
+        markersRef.current[id].remove();
+        delete markersRef.current[id];
+      }
+    });
 
+    // Добавляем новые маркеры
     offers.forEach((offer) => {
       if (!offer.location) {
         return;
       }
 
-      const isActive = offer.id === activeOfferId;
-      const icon = isActive ? activeIcon : defaultIcon;
-
-      L.marker(
-        [offer.location.latitude, offer.location.longitude],
-        { icon }
-      ).addTo(markersLayerRef.current as LayerGroup);
+      if (!markersRef.current[offer.id]) {
+        const marker = L.marker(
+          [offer.location.latitude, offer.location.longitude],
+          { icon: defaultIcon }
+        ).addTo(mapRef.current as LeafletMap);
+        
+        markersRef.current[offer.id] = marker;
+      }
     });
-  }, [offers, activeOfferId]);
+  }, [offers]);
+
+  useEffect(() => {
+    Object.keys(markersRef.current).forEach((id) => {
+      const isActive = id === activeOfferId;
+      markersRef.current[id].setIcon(isActive ? activeIcon : defaultIcon);
+    });
+  }, [activeOfferId]);
 
   return (
     <div

@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import type { Offer } from '../mocks/offers';
+import { AuthorizationStatus } from '../const';
 
 export const changeCity = createAction<string>('city/change');
-export const loadOffers = createAction<Offer[]>('offers/load');
+export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
