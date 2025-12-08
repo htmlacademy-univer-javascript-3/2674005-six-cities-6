@@ -1,10 +1,10 @@
 import React from 'react';
 import OfferCard from '../offer-card/offer-card';
-import type { Offer } from '../../mocks/offers';
+import type { Offer } from '../../types/offer';
 
 type OffersListProps = {
   offers: Offer[];
-  onOfferHover?: (id: number | null) => void;
+  onOfferHover?: (id: string | null) => void;
 };
 
 function OffersList({ offers, onOfferHover }: OffersListProps): JSX.Element {

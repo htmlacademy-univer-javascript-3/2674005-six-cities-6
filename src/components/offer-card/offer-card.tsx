@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import type { Offer } from '../../mocks/offers';
+import type { Offer } from '../../types/offer';
 
 type OfferCardProps = {
   offer: Offer;
@@ -25,7 +25,7 @@ function OfferCard({ offer, onMouseEnter, onMouseLeave }: OfferCardProps): JSX.E
         <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"
-            src={`/${offer.image}`}
+            src={offer.previewImage}
             width="260"
             height="200"
             alt={offer.title}

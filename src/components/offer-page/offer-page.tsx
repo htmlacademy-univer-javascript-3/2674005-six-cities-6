@@ -1,12 +1,13 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { offers } from '../../mocks/offers';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../store';
 import ReviewForm from '../review-form/review-form';
 
 function OfferPage(): JSX.Element {
   const { id } = useParams();
-  const offerId = Number(id);
-  const offer = offers.find((item) => item.id === offerId);
+  const offers = useSelector((state: RootState) => state.offers);
+  const offer = offers.find((item) => item.id === id);
 
   if (!offer) {
     return (

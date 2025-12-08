@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import L, { Map as LeafletMap, LayerGroup } from 'leaflet';
-import type { Offer } from '../../mocks/offers';
+import type { Offer } from '../../types/offer';
 
 type MapProps = {
   offers: Offer[];
-  activeOfferId?: number | null;
+  activeOfferId?: string | null;
 };
 
 const defaultIcon = L.icon({

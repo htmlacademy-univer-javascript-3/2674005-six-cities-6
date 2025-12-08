@@ -4,15 +4,18 @@ import OffersList from '../offers-list/offers-list';
 import Map from '../map/map';
 import CitiesList from '../cities-list/cities-list';
 import Sorting, { SortType } from '../sorting/sorting';
+import Spinner from '../spinner/spinner';
 import type { RootState } from '../../store';
 import { changeCity } from '../../store/action';
+import type { Offer } from '../../types/offer';
 
 function MainPage(): JSX.Element {
-  const [activeOfferId, setActiveOfferId] = useState<number | null>(null);
+  const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
   const [currentSort, setCurrentSort] = useState<SortType>(SortType.Popular);
   const dispatch = useDispatch();
   const currentCity = useSelector((state: RootState) => state.city);
   const allOffers = useSelector((state: RootState) => state.offers);
+  const isLoading = useSelector((state: RootState) => state.isLoading);
 
   const cityOffers = useMemo(
     () => allOffers.filter((offer) => offer.city.name === currentCity),
@@ -87,24 +90,28 @@ function MainPage(): JSX.Element {
         </div>
 
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">
-                {cityOffers.length} places to stay in {currentCity}
-              </b>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">
+                  {cityOffers.length} places to stay in {currentCity}
+                </b>
 
-              <Sorting currentSort={currentSort} onSortChange={handleSortChange} />
+                <Sorting currentSort={currentSort} onSortChange={handleSortChange} />
 
-              <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={sortedOffers} onOfferHover={setActiveOfferId} />
+                <div className="cities__places-list places__list tabs__content">
+                  <OffersList offers={sortedOffers} onOfferHover={setActiveOfferId} />
+                </div>
+              </section>
+
+              <div className="cities__right-section">
+                <Map offers={sortedOffers} activeOfferId={activeOfferId} />
               </div>
-            </section>
-
-            <div className="cities__right-section">
-              <Map offers={sortedOffers} activeOfferId={activeOfferId} />
             </div>
-          </div>
+          )}
         </div>
       </main>
     </div>
