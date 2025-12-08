@@ -6,7 +6,6 @@ import CitiesList from '../cities-list/cities-list';
 import Sorting, { SortType } from '../sorting/sorting';
 import type { RootState } from '../../store';
 import { changeCity } from '../../store/action';
-import type { Offer } from '../../mocks/offers';
 
 function MainPage(): JSX.Element {
   const [activeOfferId, setActiveOfferId] = useState<number | null>(null);

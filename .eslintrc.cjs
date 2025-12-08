@@ -6,14 +6,13 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    "htmlacademy/react-typescript",
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module', project: 'tsconfig.json' },
   settings: { react: { version: 'detect' } },
-  plugins: ['react-refresh'],
   rules: {
-    'react-refresh/only-export-components': 'warn',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-var-requires': 'off',
   },
   overrides: [
     {

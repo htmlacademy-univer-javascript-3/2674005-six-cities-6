@@ -3,4 +3,5 @@ try {
 	const { expect } = require('vitest');
 	expect.extend(matchers);
 } catch (e) {
+  console.log('Setup tests error:', e);
 }
