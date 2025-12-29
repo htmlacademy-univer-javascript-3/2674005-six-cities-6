@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../../const';
 import { userSlice } from '../../store/slices/user-slice';
 import { offersSlice } from '../../store/slices/offers-slice';
@@ -58,11 +58,11 @@ const mockOffer: Offer = {
 };
 
 const createMockStore = (initialState: Partial<RootState>) => configureStore({
-  reducer: {
+  reducer: combineReducers({
     user: userSlice.reducer,
     offers: offersSlice.reducer,
     offerDetails: offerDetailsSlice.reducer
-  },
+  }),
   preloadedState: initialState
 });
 
@@ -250,7 +250,7 @@ describe('App Routing', () => {
               path="/favorites"
               element={
                 <PrivateRoute>
-                  <FavoritesPage offers={[]} />
+                  <FavoritesPage />
                 </PrivateRoute>
               }
             />
@@ -300,7 +300,7 @@ describe('App Routing', () => {
               path="/favorites"
               element={
                 <PrivateRoute>
-                  <FavoritesPage offers={[]} />
+                  <FavoritesPage />
                 </PrivateRoute>
               }
             />

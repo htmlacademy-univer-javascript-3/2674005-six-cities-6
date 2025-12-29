@@ -9,8 +9,6 @@ type OffersState = {
   isLoading: boolean;
   isFavoritesLoading: boolean;
   hasError: boolean;
-  favorites: Offer[];
-  isFavoritesLoading: boolean;
 };
 
 const initialState: OffersState = {
