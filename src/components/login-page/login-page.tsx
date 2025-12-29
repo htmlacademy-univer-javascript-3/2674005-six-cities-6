@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/api-actions';
 import { AuthorizationStatus } from '../../const';
-import type { RootState, AppDispatch } from '../../store';
+import type { AppDispatch } from '../../store';
 import { selectAuthorizationStatus } from '../../store/selectors/user-selectors';
 
 function LoginPage(): JSX.Element {

@@ -17,7 +17,7 @@
     "@types/react-dom": "^18.3.7",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "axios-mock-adapter": "^1.22.0",
     "css-loader": "^7.1.0",
     "eslint": "^8.57.0",

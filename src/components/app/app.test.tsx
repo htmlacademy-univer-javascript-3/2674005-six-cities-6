@@ -12,8 +12,9 @@ import LoginPage from '../login-page/login-page';
 import FavoritesPage from '../favorites-page/favorites-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
+import type { RootState } from '../../store';
 
-const createMockStore = (initialState: any) => configureStore({
+const createMockStore = (initialState: Partial<RootState>) => configureStore({
   reducer: {
     user: userSlice.reducer,
     offers: offersSlice.reducer,
