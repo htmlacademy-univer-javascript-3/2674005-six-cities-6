@@ -5,7 +5,9 @@ import { fetchOffers } from '../api-actions';
 const initialState = {
   city: 'Paris',
   offers: [],
+  favorites: [],
   isLoading: false,
+  isFavoritesLoading: false,
   hasError: false
 };
 

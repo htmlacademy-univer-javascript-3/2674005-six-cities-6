@@ -29,7 +29,9 @@ describe('App Routing', () => {
       offers: {
         city: 'Paris',
         offers: [],
+        favorites: [],
         isLoading: false,
+        isFavoritesLoading: false,
         hasError: false
       },
       user: {
@@ -64,7 +66,9 @@ describe('App Routing', () => {
       offers: {
         city: 'Paris',
         offers: [],
+        favorites: [],
         isLoading: false,
+        isFavoritesLoading: false,
         hasError: false
       },
       user: {
@@ -99,7 +103,9 @@ describe('App Routing', () => {
       offers: {
         city: 'Paris',
         offers: [],
+        favorites: [],
         isLoading: false,
+        isFavoritesLoading: false,
         hasError: false
       },
       user: {
@@ -136,7 +142,9 @@ describe('App Routing', () => {
       offers: {
         city: 'Paris',
         offers: [],
+        favorites: [],
         isLoading: false,
+        isFavoritesLoading: false,
         hasError: false
       },
       user: {
@@ -171,7 +179,9 @@ describe('App Routing', () => {
       offers: {
         city: 'Paris',
         offers: [],
+        favorites: [],
         isLoading: false,
+        isFavoritesLoading: false,
         hasError: false
       },
       user: {
@@ -214,7 +224,9 @@ describe('App Routing', () => {
       offers: {
         city: 'Paris',
         offers: [],
+        favorites: [],
         isLoading: false,
+        isFavoritesLoading: false,
         hasError: false
       },
       user: {
@@ -257,4 +269,3 @@ describe('App Routing', () => {
     expect(screen.getByRole('heading', { name: /Избранное/i })).toBeInTheDocument();
   });
 });
-

@@ -5,14 +5,18 @@ import type { Offer } from '../../types/offer';
 type OffersState = {
   city: string;
   offers: Offer[];
+  favorites: Offer[];
   isLoading: boolean;
+  isFavoritesLoading: boolean;
   hasError: boolean;
 };
 
 const initialState: OffersState = {
   city: 'Paris',
   offers: [],
+  favorites: [],
   isLoading: false,
+  isFavoritesLoading: false,
   hasError: false
 };
 
