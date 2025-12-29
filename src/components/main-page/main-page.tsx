@@ -19,7 +19,6 @@ function MainPage(): JSX.Element {
   const [currentSort, setCurrentSort] = useState<SortType>(SortType.Popular);
   const dispatch = useDispatch<AppDispatch>();
   
-  // Use memoized selectors
   const currentCity = useSelector(selectCity);
   const cityOffers = useSelector(selectCityOffers);
   const isLoading = useSelector(selectOffersLoading);

@@ -56,7 +56,6 @@ function MapComponent({ offers, activeOfferId }: MapProps): JSX.Element {
       prevCityRef.current = currentCity;
     }
 
-    // Удаляем маркеры, которых нет в новом списке офферов
     const currentOfferIds = new Set(offers.map((offer) => offer.id));
     Object.keys(markersRef.current).forEach((id) => {
       if (!currentOfferIds.has(id)) {
@@ -65,7 +64,6 @@ function MapComponent({ offers, activeOfferId }: MapProps): JSX.Element {
       }
     });
 
-    // Добавляем новые маркеры
     offers.forEach((offer) => {
       if (!offer.location) {
         return;

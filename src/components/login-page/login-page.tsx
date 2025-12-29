@@ -1,10 +1,18 @@
-import React, { FormEvent, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { FormEvent, useState, useEffect, useMemo } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/api-actions';
-import { AuthorizationStatus } from '../../const';
+import { changeCity } from '../../store/action';
+import { AuthorizationStatus, CITIES } from '../../const';
 import type { AppDispatch } from '../../store';
 import { selectAuthorizationStatus } from '../../store/selectors/user-selectors';
+import HeaderLogo from '../header-logo/header-logo';
+
+const validatePassword = (password: string): boolean => {
+  const hasLetter = /[a-zA-Z]/.test(password);
+  const hasDigit = /\d/.test(password);
+  return hasLetter && hasDigit;
+};
 
 function LoginPage(): JSX.Element {
   const [email, setEmail] = useState('');
@@ -14,11 +22,22 @@ function LoginPage(): JSX.Element {
   const navigate = useNavigate();
   const authorizationStatus = useSelector(selectAuthorizationStatus);
 
+  const randomCity = useMemo(() => {
+    const randomIndex = Math.floor(Math.random() * CITIES.length);
+    return CITIES[randomIndex];
+  }, []);
+
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
       navigate('/');
     }
   }, [authorizationStatus, navigate]);
+
+  const handleCityClick = (evt: React.MouseEvent<HTMLAnchorElement>) => {
+    evt.preventDefault();
+    dispatch(changeCity(randomCity));
+    navigate('/');
+  };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -33,6 +52,11 @@ function LoginPage(): JSX.Element {
       return;
     }
 
+    if (!validatePassword(password)) {
+      setError('Password must contain at least one letter and one digit');
+      return;
+    }
+
     setError('');
     dispatch(login({ email, password }));
   };
@@ -42,17 +66,7 @@ function LoginPage(): JSX.Element {
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link" href="/">
-                <img
-                  className="header__logo"
-                  src="/img/logo.svg"
-                  alt="6 cities logo"
-                  width="81"
-                  height="41"
-                />
-              </a>
-            </div>
+            <HeaderLogo isActive={false} />
           </div>
         </div>
       </header>
@@ -98,9 +112,9 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
-              </a>
+              <Link className="locations__item-link" to="/" onClick={handleCityClick}>
+                <span>{randomCity}</span>
+              </Link>
             </div>
           </section>
         </div>

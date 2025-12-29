@@ -26,9 +26,9 @@ export type Offer = {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
-  image?: string; // For compatibility with components
-  images?: string[]; // Gallery images for detail page
-  goods?: string[]; // What's inside (amenities)
+  image?: string;
+  images?: string[];
+  goods?: string[];
   description?: string;
   bedrooms?: number;
   maxAdults?: number;

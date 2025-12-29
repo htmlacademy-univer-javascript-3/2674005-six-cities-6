@@ -1,6 +1,5 @@
 import React from 'react';
-
-const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+import { CITIES } from '../../const';
 
 type CitiesListProps = {
   currentCity: string;

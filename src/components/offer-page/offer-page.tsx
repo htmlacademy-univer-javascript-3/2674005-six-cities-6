@@ -16,7 +16,6 @@ function OfferPage(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   
-  // Use memoized selectors
   const offer = useSelector(selectCurrentOffer);
   const comments = useSelector(selectComments);
   const isOfferLoading = useSelector(selectOfferLoading);
